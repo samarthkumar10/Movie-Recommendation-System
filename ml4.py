@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.getenv("api_key") 
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, 'movie_data.sav')
+current_dir = os.path.dirname(os.path.abspath(__file__))                          
+file_path = os.path.join(current_dir, 'movie_data.sav')                                
 
 if os.path.exists(file_path):
     with open(file_path, 'rb') as f:
@@ -20,7 +20,7 @@ else:
     st.stop()
 
 # Function to get movie recommendations
-def get_recommendations(title, cosine_sim=cosine_sim):
+def get_recommendations(title, cosine_sim=cosine_sim):                                                                                                      
     try:
         idx = movies[movies['title'] == title].index[0]
         sim_scores = list(enumerate(cosine_sim[idx]))
