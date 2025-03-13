@@ -6,18 +6,18 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv("api_key")  # Load API key from .env
+API_KEY = os.getenv("api_key") 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, 'movie_data.sav')
 
+st.write(f"Looking for file at: {file_path}")
+
 if os.path.exists(file_path):
-    with open(file_path, 'rb') as f:
-        movies, cosine_sim = pickle.load(f)
-    print("Movie data loaded successfully!")
+    st.success("File found!")
 else:
     st.error(f"Error: The file 'movie_data.sav' was not found in {current_dir}")
-    st.stop()
+
 
 # Function to get movie recommendations
 def get_recommendations(title, cosine_sim=cosine_sim):
@@ -29,7 +29,7 @@ def get_recommendations(title, cosine_sim=cosine_sim):
         return movies.iloc[movie_indices][['title', 'id']]
     except IndexError:
         st.error("Error: Movie not found in dataset.")
-        return pd.DataFrame()  # Return empty DataFrame on error
+        return pd.DataFrame() 
 
 # Fetch movie poster from TMDB API
 def fetch_poster(movie_id):  
