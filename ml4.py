@@ -11,13 +11,13 @@ API_KEY = os.getenv("api_key")
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, 'movie_data.sav')
 
-st.write(f"Looking for file at: {file_path}")
-
 if os.path.exists(file_path):
-    st.success("File found!")
+    with open(file_path, 'rb') as f:
+        movies, cosine_sim = pickle.load(f)
+    print("Movie data loaded successfully!")
 else:
     st.error(f"Error: The file 'movie_data.sav' was not found in {current_dir}")
-
+    st.stop()
 
 # Function to get movie recommendations
 def get_recommendations(title, cosine_sim=cosine_sim):
