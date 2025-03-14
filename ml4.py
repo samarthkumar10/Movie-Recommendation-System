@@ -3,14 +3,27 @@ import pandas as pd
 import requests
 import pickle
 import os
+import gdown
 from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("api_key") 
 
-current_dir = os.path.dirname(os.path.abspath(__file__))                          
-file_path = os.path.join(current_dir, 'movie_data.sav')                                
+# Google Drive file ID (Extract from your link)
+file_id = "1nMBxjESOO-B5Y382DF7IV99R7aFYMqfI"
+download_url = f"https://drive.google.com/uc?id={file_id}"
 
+# Define file path
+current_dir = os.path.dirname(os.path.abspath(__file__))                          
+file_path = os.path.join(current_dir, 'movie_data.sav') 
+
+# Download model if not found locally
+if not os.path.exists(file_path):
+    st.warning("Downloading model from Google Drive...")
+    gdown.download(download_url, file_path, quiet=False)
+    st.success("Download complete!")
+
+# Load model
 if os.path.exists(file_path):
     with open(file_path, 'rb') as f:
         movies, cosine_sim = pickle.load(f)
@@ -63,4 +76,4 @@ if st.button('Recommend'):
             poster_url = fetch_poster(movie['id'])
             with cols[j]:  # Use 'cols' instead of 'col'
                 st.image(poster_url, width=130)
-                st.write(movie['title'])
+                st.write(movie['title']) 
