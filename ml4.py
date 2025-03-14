@@ -17,11 +17,6 @@ download_url = f"https://drive.google.com/uc?id={file_id}"
 current_dir = os.path.dirname(os.path.abspath(__file__))                          
 file_path = os.path.join(current_dir, 'movie_data.sav') 
 
-# Download model if not found locally
-if not os.path.exists(file_path):
-    st.warning("Downloading model from Google Drive...")
-    gdown.download(download_url, file_path, quiet=False)
-    st.success("Download complete!")
 
 # Load model
 if os.path.exists(file_path):
