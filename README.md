@@ -8,7 +8,7 @@ This repository contains a Movie Recommendation System that utilizes machine lea
 - REST API for serving recommendations.
 - Deployment using Streamlit.
 
-# Tech Stack for BingeGuide 🎬  
+# Tech Stack for BingeGuide 
 
 ## **Programming Language**  
 - Python  
@@ -34,6 +34,4 @@ This repository contains a Movie Recommendation System that utilizes machine lea
 ## **Networking & Requests**  
 - Requests (To fetch movie details from TMDB API)  
 
-## **Deployment Options**  
-- Streamlit Cloud  
-- Local Deployment (Run using `streamlit run app.py`)  
+
